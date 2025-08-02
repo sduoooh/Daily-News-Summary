@@ -36,7 +36,7 @@
 
 ## 定时执行
 
-GitHub Actions工作流配置为每天早上8点（UTC时间）自动运行。你也可以在Actions页面手动触发执行。
+GitHub Actions工作流配置为每天8点和20点自动运行两次。你也可以在Actions页面手动触发执行。
 
 ## 本地运行
 
