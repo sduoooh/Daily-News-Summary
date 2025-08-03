@@ -1,7 +1,7 @@
 from requests import get
 from bs4 import BeautifulSoup
 
-def get_page(source, time_limit="6h"):
+def get_page(source, time_limit="9h"):
     url = f"https://news.google.com/search?q=allintitle%3Achina%20site%3A{source}%20when%3A{time_limit}&hl=en-US&gl=US&ceid=US%3Aen"
     response = get(url, headers={"User-Agent": "Mozialla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"})
 
