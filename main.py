@@ -15,8 +15,6 @@ if len(res) == 0:
     info("No new articles found.")
     exit(0)
 res.sort(key=lambda x: (int(x['date'].split()[0]), 'minutes' in x['date'], 'hours' in x['date']))
-for item in res:
-    print(f"{item['publisher']} - {item['title']} - {item['date']}")
 try:
     info(get_summary(res))
 except Exception as e:
