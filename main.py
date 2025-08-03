@@ -6,11 +6,14 @@ if not check_email():
     raise Exception("Email configuration is incorrect or the SMTP server is unreachable. Please check your settings.")
 
 sources = ["www.reuters.com/world/china", "www.economist.com", "www.bloomberg.com/news/articles", "www.wsj.com", "www.scmp.com/news/china/article"]
-res = [parse_html(get_page(source, "1d")) for source in sources]
+res = [parse_html(get_page(source)) for source in sources]
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
     exit(1)
 res = [item for sublist in res for item in sublist]  
+if len(res) == 0:
+    info("No new articles found.")
+    exit(0)
 res.sort(key=lambda x: (int(x['date'].split()[0]), 'minutes' in x['date'], 'hours' in x['date']))
 try:
     info(get_summary(res))
