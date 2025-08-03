@@ -2,7 +2,7 @@ name: Daily News Summary
 
 on:
   schedule:
-    - cron: '0 4,12,20 * * *'
+    - cron: '0 4/8 * * *'
     - cron: '*/5 1,2 * * *'
   workflow_dispatch:
 
