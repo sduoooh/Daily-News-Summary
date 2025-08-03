@@ -14,7 +14,6 @@ res = [item for sublist in res for item in sublist]
 if len(res) == 0:
     info("No new articles found.")
     exit(0)
-print(len(res))
 res.sort(key=lambda x: (int(x['date'].split()[0]), 'minutes' in x['date'], 'hours' in x['date']))
 try:
     info(get_summary(res))
