@@ -1,9 +1,9 @@
 name: Daily News Summary
 
 on:
-  schedule:
-    - cron:  "0 4/8 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [schedule-run]
 
 jobs:
   run-daily-news:
