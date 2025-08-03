@@ -22,6 +22,5 @@ def get_summary(items):
     with open('prompt.txt', 'r', encoding='utf-8') as f:
         prompt = f.read()
     content = "\n".join([f"{item['publisher']} - {item['title']} - {item['date']}" for item in items]) 
-    return content
     content = prompt.format(content)
     return get_ai_response(content)
