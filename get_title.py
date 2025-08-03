@@ -30,5 +30,7 @@ def parse_html(html):
         title = a.get_text(strip=True)
         publisher = partial[pb_index]
         items.append({'publisher': publisher, 'title': title, 'date': date})
+        
+        print(f"Found article: {title} from {publisher} on {date}")
 
     return items
