@@ -8,7 +8,7 @@ def _get_ai_response(content):
     client = genai.Client(api_key=GEMINI_API_KEY)
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-pro',
+            model='gemini-2.5-flash',
             contents=content,
             config=types.GenerateContentConfig(
                 temperature=0.95
