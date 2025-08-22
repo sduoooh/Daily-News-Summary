@@ -1,17 +1,19 @@
 import time
+import json
 from requests import get
 from bs4 import BeautifulSoup
 
 from config import ZAOBAO_SHADOW
 
 def date_transfer(date_string):
-    if ":" in date_string:
-        date_h, date_m = map(int, date_string.split(":"))
-        now_h, now_m = time.localtime().tm_hour, time.localtime().tm_min
-        diff_m = (now_h - date_h) * 60 + (now_m - date_m)
-        return f"{diff_m // 60} hours ago"
+    now = int(time.time())
+    diff = now - int(date_string)
+    if diff < 60:
+        return f"{diff} seconds ago"
+    elif diff < 3600:
+        return f"{diff // 60} minutes ago"
     else:
-        return date_string.replace("分钟前", " minutes ago")
+        return f"{diff // 3600} hours ago"
 
 def get_zaobao():
     response = get(ZAOBAO_SHADOW)
@@ -19,7 +21,7 @@ def get_zaobao():
     if response.status_code != 200:
         return None
     soup = BeautifulSoup(response.text, 'html.parser')
-    print(f"Fetched {len(soup.find_all('article'))} articles from Lianhe Zaobao")
-    return [{"publisher": "Lianhe Zaobao", "title": article.find("a").get("title"), "date": date_transfer(article.find("span").text)} for article in soup.find_all('article')]
+    article_json = json.loads(json.loads(soup.find_all('script')[-1].text[48:-2]))["loaderData"]['0-0']["context"]["payload"]["articles"]
+    return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["timestamp"])} for article in article_json]
 
 print(get_zaobao())
