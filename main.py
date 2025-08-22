@@ -9,7 +9,7 @@ if not check_email():
 
 sources = ["www.reuters.com/world/china", "www.economist.com", "www.bloomberg.com/news/articles", "www.wsj.com", "www.scmp.com/news/china/article"]
 res = [parse_html(get_page(source)) for source in sources]
-res.extend(get_zaobao())
+res.append(get_zaobao())
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
     exit(1)

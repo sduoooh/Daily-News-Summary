@@ -23,5 +23,3 @@ def get_zaobao():
     soup = BeautifulSoup(response.text, 'html.parser')
     article_json = json.loads(json.loads(soup.find_all('script')[-1].text[48:-2]))["loaderData"]['0-0']["context"]["payload"]["articles"]
     return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["timestamp"])} for article in article_json]
-
-print(get_zaobao())
