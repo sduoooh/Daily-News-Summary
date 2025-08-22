@@ -18,4 +18,5 @@ def get_zaobao():
     if response.status_code != 200:
         return None
     soup = BeautifulSoup(response.text, 'html.parser')
+    print(f"Fetched {len(soup.find_all('article'))} articles from Lianhe Zaobao")
     return [{"publisher": "Lianhe Zaobao", "title": article.find("a").get("title"), "date": date_transfer(article.find("span").text)} for article in soup.find_all('article')]
