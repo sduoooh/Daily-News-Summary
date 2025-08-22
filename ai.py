@@ -31,8 +31,9 @@ def get_ai_response(content):
     raise e
 
 def get_summary(items):
+    print(f"Generating summary for {len(items)} items...")
     with open('prompt.txt', 'r', encoding='utf-8') as f:
         prompt = f.read()
-    content = "\n".join([f"{item['publisher']} - {item['title']} - {item['date']}" for item in items]) 
+    content = "\n".join([f"[{i}] {item['title']}({item['publisher']}), {item['date']}" for i, item in enumerate(items)]) 
     content = prompt.format(content)
     return get_ai_response(content)
