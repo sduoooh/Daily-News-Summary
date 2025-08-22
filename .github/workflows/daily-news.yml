@@ -37,4 +37,5 @@ jobs:
         EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
         EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        ZAOBAO_SHADOW: ${{ secrets.ZAOBAO_SHADOW }}
       run: python main.py
