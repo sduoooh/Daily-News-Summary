@@ -7,7 +7,7 @@ from addon import get_zaobao
 if not check_email():
     raise Exception("Email configuration is incorrect or the SMTP server is unreachable. Please check your settings.")
 
-sources = ["www.reuters.com/world/china", "www.economist.com", "www.bloomberg.com/news/articles", "www.wsj.com", "www.scmp.com/news/china/article"]
+sources = ["www.reuters.com/world/china", "www.economist.com", "www.bloomberg.com/news/articles", "www.wsj.com", "www.ft.com"]
 res = [parse_html(get_page(source)) for source in sources]
 res.append(get_zaobao())
 if None in res:
