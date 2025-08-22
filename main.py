@@ -27,7 +27,7 @@ if len(res) == 0:
     info("No new articles found.")
     exit(0)
 res.sort(key=lambda x: ('hours' in x['date'], 'minutes' in x['date'], int(x['date'].split()[0])))
-
+print(f"Found {len(res)} articles in total.")
 try:
     info(get_summary(res))
 except Exception as e:
