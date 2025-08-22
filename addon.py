@@ -14,7 +14,6 @@ def date_transfer(date_string):
         return date_string.replace("分钟前", " minutes ago")
 
 def get_zaobao():
-    print(f"{ZAOBAO_SHADOW} is being fetched...")
     response = get(ZAOBAO_SHADOW)
     response.encoding = 'utf-8' 
     if response.status_code != 200:
