@@ -123,5 +123,3 @@ Thumbs.db
 *.temp
 
 test
-.gitignore
-addon.py

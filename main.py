@@ -2,6 +2,8 @@ from  get_title   import create_requests, get_page, parse_html
 from      ai      import get_summary 
 from  send_email  import check_email, info, err
 
+from addon import get_zaobao
+
 import time
 
 if not check_email():
@@ -15,7 +17,7 @@ sources = [
     ["www.ft.com", []]
 ]
 time_str = f"after%3A{time.strftime('%Y-%m-%d', time.gmtime(time.time() - 86400))}%20before%3A{time.strftime('%Y-%m-%d', time.gmtime(time.time() + 86400))}"
-res = [parse_html(get_page(time_str, source)) for source in (create_requests(sources))]
+res = [parse_html(get_page(time_str, source)) for source in (create_requests(sources))].extend(get_zaobao())
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
     exit(1)
