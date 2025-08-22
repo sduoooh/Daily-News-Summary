@@ -17,7 +17,8 @@ sources = [
     ["www.ft.com", []]
 ]
 time_str = f"after%3A{time.strftime('%Y-%m-%d', time.gmtime(time.time() - 86400))}%20before%3A{time.strftime('%Y-%m-%d', time.gmtime(time.time() + 86400))}"
-res = [parse_html(get_page(time_str, source)) for source in (create_requests(sources))].extend(get_zaobao())
+res = [parse_html(get_page(time_str, source)) for source in (create_requests(sources))]
+res.append(get_zaobao())
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
     exit(1)
