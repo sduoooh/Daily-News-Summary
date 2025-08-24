@@ -15,6 +15,9 @@ def date_transfer(date_string):
     else:
         return f"{diff // 3600} hours ago"
 
+def check_zaobao():
+    return bool(ZAOBAO_SHADOW)
+
 def get_zaobao():
     response = get(ZAOBAO_SHADOW)
     response.encoding = 'utf-8' 

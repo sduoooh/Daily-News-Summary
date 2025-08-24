@@ -2,7 +2,7 @@ from  get_title   import create_requests, get_page, parse_html
 from      ai      import get_summary 
 from  send_email  import check_email, info, warn, err
 
-from addon import get_zaobao
+from addon import check_zaobao, get_zaobao
 
 if not check_email():
     raise Exception("Email configuration is incorrect or the SMTP server is unreachable. Please check your settings.")
@@ -16,7 +16,8 @@ sources = [
     ["www.ft.com", ["content"]]
 ]
 res = [parse_html(get_page(source)) for source in (create_requests(sources))]
-res.append(get_zaobao())
+if check_zaobao():
+    res.append(get_zaobao())
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
     exit(1)

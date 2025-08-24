@@ -4,9 +4,9 @@
 
 ## 功能
 
-- 从多个新闻网站收集关于中国的新闻
+- 从多个新闻网站收集新闻
 - 使用Google Gemini AI进行新闻摘要
-- 通过邮件发送摘要结果
+- 通过邮件发送摘要结果(默认使用`QQ`邮箱)
 
 ## 设置GitHub Secrets
 
@@ -23,6 +23,10 @@
 - `EMAIL_ADDRESS`: 发送邮件的邮箱地址
 - `EMAIL_PASSWORD`: 邮箱的授权码（不是登录密码）
 - `RECIPIENT_EMAIL`: 接收邮件的邮箱地址
+
+### 可选的Secrets
+
+- `ZAOBAO_SHADOW`: Github Action IP可访问的联合早报realtime页面URL，置空则不获取该数据
 
 ### QQ邮箱设置说明
 
