@@ -50,5 +50,8 @@ def send_email(content, status=""):
 def info(content):
     send_email(content)
 
+def warn(content):
+    send_email(content, " - Warning")
+
 def err(content):
     send_email(content, " - Error")
