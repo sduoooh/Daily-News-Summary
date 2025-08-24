@@ -25,7 +25,7 @@ def _get_ai_response(prompt, content):
             )
         )
         res = response.text
-        if not res.strip():
+        if not res or not res.strip():
             raise EmptyError()
         return res
     except errors.APIError as e:
