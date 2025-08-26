@@ -37,18 +37,20 @@ def get_ai_response(prompt, content):
     retry_attempts = 3
     sleep_time = 2 
     empty_num = 0
-    
+    error_info = ""
+
     while retry_attempts > 0:
         try:
             return _get_ai_response(prompt, content)
         except ValueError as e:
             time.sleep(sleep_time)
             retry_attempts -= 1
+            error_info = e.args[0]
         except EmptyError as e:
             time.sleep(sleep_time)
             empty_num += 1
     print(f"AI returned empty response {empty_num} times.")
-    raise AIError(content, e.args[0], empty_num)
+    raise AIError(content, error_info, empty_num)
 
 def get_summary(items):
     with open('prompt.txt', 'r', encoding='utf-8') as f:
