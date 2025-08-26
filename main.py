@@ -29,6 +29,7 @@ if len(res) == 0:
     info("No news found.")
     exit(0)
 res.sort(key=lambda x: ('hours' in x['date'], 'minutes' in x['date'], int(x['date'].split()[0])))
+res = [item for item in res if (nums := item['date'].split()[:2]) and (not 'hours' in item['date'] or int(nums[0]) <= 9)]
 try:
     info(get_summary(res))
 except Exception as e:
