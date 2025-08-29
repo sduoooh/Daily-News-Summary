@@ -35,7 +35,7 @@ def _get_ai_response(prompt, content):
 
 def get_ai_response(prompt, content):
     retry_attempts = 3
-    sleep_time = 2 
+    sleep_time = 5 
     empty_num = 0
     error_info = ""
 
