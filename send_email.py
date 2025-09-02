@@ -10,8 +10,9 @@ sender = EMAIL_ADDRESS
 password = EMAIL_PASSWORD
 receivers = [RECIPIENT_EMAIL]
 smtp_server = SMTP_SERVER
+print(SMTP_PORT)
 smtp_port = int(SMTP_PORT) 
- 
+
 def check_email():
     try:
         socket.create_connection((smtp_server, smtp_port), timeout=10)
