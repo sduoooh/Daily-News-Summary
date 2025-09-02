@@ -4,13 +4,13 @@ import ssl
 from email.mime.text import MIMEText
 from email.header import Header
 
-from config import EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL
+from config import EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL, SMTP_SERVER, SMTP_PORT
 
 sender = EMAIL_ADDRESS
 password = EMAIL_PASSWORD
 receivers = [RECIPIENT_EMAIL]
-smtp_server = 'smtp.163.com'
-smtp_port = 465 
+smtp_server = SMTP_SERVER
+smtp_port = SMTP_PORT 
  
 def check_email():
     try:

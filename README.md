@@ -6,7 +6,7 @@
 
 - 从多个新闻网站收集新闻
 - 使用Google Gemini AI进行新闻摘要
-- 通过邮件发送摘要结果(默认使用`QQ`邮箱)
+- 通过邮件发送摘要结果(~~默认使用`QQ`邮箱~~逆天`QQ`有审查，建议使用`163`或者`Gmail`，这里默认使用`163`)
 
 ## Todo
 
@@ -49,16 +49,21 @@
 #### 可选的Secrets
 
 - `ZAOBAO_SHADOW`: Github Action IP可访问的联合早报realtime页面URL，置空则不获取该数据
+- `GEMINI_MODEL_NAME`: 使用的Google Gemini模型名称，默认为`gemini-2.5-pro`
+- `SMTP_SERVER`: SMTP服务器地址，默认为`smtp.163.com`
+- `SMTP_PORT`: SMTP服务器端口，默认为`465`
 
-#### QQ邮箱设置说明
+#### 邮箱设置说明
 
-如果使用QQ邮箱发送邮件，需要：
+~~如果使用QQ邮箱发送邮件，需要：~~
 
-1. 登录QQ邮箱
-2. 进入设置 > 账户
-3. 开启SMTP服务
-4. 获取授权码（16位字符串）
-5. 将授权码作为 `EMAIL_PASSWORD` 的值
+~~1. 登录QQ邮箱~~
+~~2. 进入设置 > 账户~~
+~~3. 开启SMTP服务~~
+~~4. 获取授权码（16位字符串）~~
+~~5. 将授权码作为 `EMAIL_PASSWORD` 的值~~
+
+总而言之就是把使用的邮箱服务的SMTP服务开启，并获取授权码，将授权码作为 `EMAIL_PASSWORD` 的值。
 
 ### 定时执行
 
@@ -80,3 +85,7 @@ GitHub Actions工作流配置为每天4点、12点和20点自动运行三次。�
 ### 自定义执行策略
 
 同 [`直接使用Github Actions` 部分对应章节](#自定义执行策略)。
+
+# 其他
+
+若修改使用，涉及环境变量的使用更改，建议均在 `config.py` 中进行导出，提交前运行`renew_run_yaml.py`以更新`Github Action`的配置。

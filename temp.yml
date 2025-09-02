@@ -33,12 +33,5 @@ jobs:
 
     - name: Run daily news summary
       env:
-        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        GEMINI_MODEL_NAME: ${{ secrets.GEMINI_MODEL_NAME }}
-        RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
-        SMTP_PORT: ${{ secrets.SMTP_PORT }}
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        ZAOBAO_SHADOW: ${{ secrets.ZAOBAO_SHADOW }}
+<env>
       run: python main.py
