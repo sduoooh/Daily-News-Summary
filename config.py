@@ -10,3 +10,5 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
 
 ZAOBAO_SHADOW = os.getenv('ZAOBAO_SHADOW')
+
+print(f"port: {SMTP_PORT}")
