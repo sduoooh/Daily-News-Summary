@@ -10,8 +10,7 @@ sender = EMAIL_ADDRESS
 password = EMAIL_PASSWORD
 receivers = [RECIPIENT_EMAIL]
 smtp_server = SMTP_SERVER
-print(f"port: {SMTP_PORT}")
-smtp_port = int(SMTP_PORT) 
+smtp_port = int(SMTP_PORT)
 
 def check_email():
     try:
