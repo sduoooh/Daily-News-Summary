@@ -9,18 +9,18 @@ from config import EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL
 sender = EMAIL_ADDRESS
 password = EMAIL_PASSWORD
 receivers = [RECIPIENT_EMAIL]
-smtp_server = 'smtp.qq.com'
+smtp_server = 'smtp.163.com'
 smtp_port = 465 
  
 def check_email():
     try:
-        socket.create_connection((smtp_server, 465), timeout=10)
+        socket.create_connection((smtp_server, smtp_port), timeout=10)
     except Exception as e:
         return False
         
     try:
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_server, 465, context=context) as server:
+        with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
             response = server.login(sender, password)
             return True
     except Exception as e:
