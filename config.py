@@ -1,7 +1,7 @@
 import os
 
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-GEMINI_MODEL_NAME = os.getenv('GEMINI_MODEL_NAME') or 'gemini-3-flash'
+GEMINI_MODEL_NAME = os.getenv('GEMINI_MODEL_NAME') or 'gemini-3-flash-preview'
 
 SMTP_SERVER = os.getenv('SMTP_SERVER') or 'smtp.163.com'
 SMTP_PORT = os.getenv('SMTP_PORT') or 465
