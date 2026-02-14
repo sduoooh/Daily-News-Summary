@@ -17,7 +17,7 @@ sources = [
 ]
 res = [parse_html(get_page(source)) for source in (create_requests(sources))]
 if check_zaobao():
-    sources.append([www.zaobao.com, []])
+    sources.append(["www.zaobao.com", []])
     res.append(get_zaobao())
 if None in res:
     err("Error: Failed to retrieve data from one or more sources.")
