@@ -44,5 +44,8 @@ def get_zaobao():
     response.encoding = 'utf-8' 
     if response.status_code != 200:
         return None
-    article_json = raw2json(response.text)
+    try:
+        article_json = raw2json(response.text)
+    except:
+        return []
     return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
