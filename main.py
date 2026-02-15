@@ -21,7 +21,7 @@ def get_additional_sources():
     if not debugger.check_func_status("get_additional_sources"):
         return [], []
     zaobao = get_zaobao()
-    warn_list = ["Lianhe Zaobao"] if len(zaobao) > 0 else []
+    warn_list = ["Lianhe Zaobao"] if len(zaobao) == 0 else []
     return zaobao, warn_list
 
 def get_all_sources(sources):
