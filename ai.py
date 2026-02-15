@@ -3,7 +3,7 @@ from google import genai
 from google.genai import types, errors
 
 from config import GEMINI_API_KEY, GEMINI_MODEL_NAME
-
+from debug import debugger
 class EmptyError(Exception):
     pass
 
@@ -52,6 +52,8 @@ def get_ai_response(prompt, content):
     raise AIError(content, error_info, empty_num)
 
 def get_summary(items):
+    if not debugger.check_func_status("get_summary"):
+        return ""
     with open('prompt.txt', 'r', encoding='utf-8') as f:
         prompt = f.read()
     content = "\n".join([f"[{i+1}] {item['title']}({item['publisher']}), {item['date']}" for i, item in enumerate(items)]) 

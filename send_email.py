@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL, SMTP_SERVER, SMTP_PORT
+from debug import debugger
 
 sender = EMAIL_ADDRESS
 password = EMAIL_PASSWORD
@@ -13,6 +14,8 @@ smtp_server = SMTP_SERVER
 smtp_port = int(SMTP_PORT)
 
 def check_email():
+    if not debugger.check_func_status("check_email"):
+        return True
     try:
         socket.create_connection((smtp_server, smtp_port), timeout=10)
     except Exception as e:
@@ -48,10 +51,16 @@ def send_email(content, status=""):
                 pass  
 
 def info(content):
+    if not debugger.check_func_status("info"):
+        return
     send_email(content)
 
 def warn(content):
+    if not debugger.check_func_status("warn"):
+        return
     send_email(content, " - Warning")
 
 def err(content):
+    if not debugger.check_func_status("err"):
+        return
     send_email(content, " - Error")

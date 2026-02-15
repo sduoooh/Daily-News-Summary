@@ -25,5 +25,27 @@ Debug Info in {self.filename} - {self.funcname}:
 
         return base
     
-debug_info: list[DebugInfo] = []
-debug_mode = False
+class Debug:
+    debug_info: list[DebugInfo] = []
+    debug_mode = False
+    debug_runallowlist: list[str] = []
+
+    def __init__(self, mode=False, runallowlist=[]):
+        self.debug_mode = mode
+        self.debug_runallowlist = runallowlist
+
+    def check_func_status(self, funcname):
+        if self.debug_mode and funcname not in self.debug_runallowlist:
+            return False
+        return True
+    
+    def add_debug_info(self, filename, funcname, msg, objs = []):
+        self.debug_info.append(DebugInfo(filename, funcname, msg, objs))
+
+    def print_debug_info(self):
+        if self.debug_mode:
+            print("============ Debug Information ============\n")
+            for info in self.debug_info:
+                print(info, "\n")
+
+debugger = Debug()
