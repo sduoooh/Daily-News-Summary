@@ -34,6 +34,10 @@ res.sort(key=lambda x: ('hours' in x['date'], 'minutes' in x['date'], int(x['dat
 res = [item for item in res if (nums := item['date'].split()[:2]) and (not 'hours' in item['date'] or int(nums[0]) <= 9)]
 try:
     info(get_summary(res))
+    if debug_mode:
+        print(debug_info)
 except Exception as e:
     err(e.args[0])
+    if debug_mode:
+        print(debug_info)
     exit(1)
