@@ -59,6 +59,7 @@ def get_zaobao():
     try:
         article_json = raw2json(response.text)
     except:
+        global debug_mode
         debug_mode = True
         return []
     return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
