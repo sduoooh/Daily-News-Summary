@@ -32,7 +32,7 @@ def raw2json(raw):
     start_pos = l2.index("id")
     end_pos = l2.index("tagName")
     l3: list = l2[start_pos:end_pos]
-    debug_info.add(DebugInfo("addon", "raw2json", "Extracted JSON list", RuntimeValue("l3", l3)))
+    debug_info.append(DebugInfo("addon", "raw2json", "Extracted JSON list", RuntimeValue("l3", l3)))
     res = []
     res.append({"publisher": "Lianhe Zaobao", "title": l3[3], "date": l3[5]})
     t = []
