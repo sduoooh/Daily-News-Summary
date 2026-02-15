@@ -49,7 +49,6 @@ def get_ai_response(prompt, content):
         except EmptyError as e:
             time.sleep(sleep_time)
             empty_num += 1
-    print(f"AI returned empty response {empty_num} times.")
     raise AIError(content, error_info, empty_num)
 
 def get_summary(items):
