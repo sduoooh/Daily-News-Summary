@@ -10,7 +10,7 @@ def create_requests(sources: list[tuple[str, list[str]]]):
 def get_page(source, time_limit="9h"):
     source = f"({source}%20)%20when%3A{time_limit}"
     url = f"https://news.google.com/search?q={source}&hl=en-US&gl=US&ceid=US%3Aen"
-    # debug_info.append(DebugInfo("get_title", "get_page", f"Fetch from {url} ..."))
+    debug_info.append(DebugInfo("get_title", "get_page", f"Fetch from {url} ..."))
     response = get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"})
     if response.status_code != 200:
         return None
