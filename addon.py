@@ -25,7 +25,10 @@ def raw2json(raw):
     start_pos = l2.index("{")
     last_pos = l2.rindex("}") + 1
     l2 = '[' + l2[start_pos:last_pos].replace('\\"', '"') + ']'
-    l3 = json.loads(l2)[14:-31]
+    l2 = json.loads(l2)
+    start_pos = l2.index("id")
+    end_pos = l2.index("tagName")
+    l3: list = l2[start_pos:end_pos]
     res = []
     res.append({"publisher": "Lianhe Zaobao", "title": l3[3], "date": l3[5]})
     l3 = l3[17:]
