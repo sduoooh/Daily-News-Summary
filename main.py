@@ -3,6 +3,7 @@ from      ai      import get_summary
 from  send_email  import check_email, info, warn, err
 
 from addon import check_zaobao, get_zaobao
+from debug import debug_mode, debug_info
 
 if not check_email():
     raise Exception("Email configuration is incorrect or the SMTP server is unreachable. Please check your settings.")

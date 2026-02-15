@@ -4,6 +4,7 @@ from requests import get
 from bs4 import BeautifulSoup
 
 from config import ZAOBAO_SHADOW
+from debug import DebugInfo, RuntimeValue, debug_info
 
 def date_transfer(date_string):
     now = int(time.time())
