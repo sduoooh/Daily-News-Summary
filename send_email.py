@@ -55,6 +55,11 @@ def info(content):
         return
     send_email(content)
 
+def debug(content):
+    if not debugger.check_func_status("debug"):
+        return
+    send_email(content, " - Debug")
+
 def warn(content):
     if not debugger.check_func_status("warn"):
         return
