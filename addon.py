@@ -60,7 +60,8 @@ def get_zaobao(debugs):
         return None
     try:
         article_json = raw2json(response.text, debugs)
-    except:
-        return []
-    return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
+        return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
+    except Exception as e:
+        raise e
+        
 
