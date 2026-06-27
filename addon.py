@@ -21,10 +21,11 @@ def check_zaobao():
         return True
     return bool(ZAOBAO_SHADOW)
 
-def raw2json(raw):
+def raw2json(raw, debugs):
     l1 = BeautifulSoup(raw, 'html.parser').find_all('script')
     l1.sort(key=lambda x: len(x.text), reverse=True)
     l2 = l1[0].text
+    debugs(l2)
     start_pos = l2.index("{")
     last_pos = l2.rindex("}") + 1
     l2 = '[' + l2[start_pos:last_pos].replace('\\"', '"') + ']'
@@ -52,13 +53,13 @@ def raw2json(raw):
     debugger.add_debug_info("addon", "raw2json", "reslist", [RuntimeValue("res", res)])
     return res
 
-def get_zaobao():
+def get_zaobao(debugs):
     response = get(ZAOBAO_SHADOW)
     response.encoding = 'utf-8'
     if response.status_code != 200:
         return None
     try:
-        article_json = raw2json(response.text)
+        article_json = raw2json(response.text, debugs)
     except:
         return []
     return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
