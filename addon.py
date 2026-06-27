@@ -2,6 +2,7 @@ import time
 import json
 from requests import get
 from bs4 import BeautifulSoup
+from re import compile
 
 from config import ZAOBAO_SHADOW
 from debug import RuntimeValue, debugger
@@ -33,23 +34,22 @@ def raw2json(raw, debugs):
     start_pos = l2.index("id")
     end_pos = l2.index("tagName")
     l3: list = l2[start_pos:end_pos]
+    
     res = []
-    res.append({"publisher": "Lianhe Zaobao", "title": l3[3], "date": l3[5]})
-    t = []
-    first = True
+    t = [0, '']
+    pattern = compile(r'[\u4e00-\u9fff\u3400-\u4dbf]')
     for i in l3:
-        if first:
-            if type(i) != dict:
-                continue
-            else:
-                first = False
-                continue
-        if type(i) != dict:
-            t.append(i)
-        else:
-            res.append({"publisher": "Lianhe Zaobao", "title": t[1], "date": t[2]})
-            t = []
-    res.append({"publisher": "Lianhe Zaobao", "title": t[1], "date": t[2]})
+        if type(i) == dict:
+            res.append({"publisher": "Lianhe Zaobao", "title": t[1], "date": t[0]})
+            t = [0, '']
+            continue
+        if isinstance(i, int) and i > 1782000000:
+            t[0] = i
+            continue
+        if bool(pattern.search(i)):
+            t[1] = i
+    res.append({"publisher": "Lianhe Zaobao", "title": t[1], "date": t[0]})
+    
     debugger.add_debug_info("addon", "raw2json", "reslist", [RuntimeValue("res", res)])
     return res
 
@@ -63,5 +63,3 @@ def get_zaobao(debugs):
         return [{"publisher": "Lianhe Zaobao", "title": article["title"], "date": date_transfer(article["date"])} for article in article_json]
     except Exception as e:
         return []
-        
-
