@@ -7,9 +7,9 @@ from re import compile
 from config import ZAOBAO_SHADOW
 from debug import RuntimeValue, debugger
 
-def date_transfer(date_string):
+def date_transfer(raw_date):
     now = int(time.time())
-    diff = now - date_string
+    diff = now - raw_date
     if diff < 60:
         return f"{diff} seconds ago"
     elif diff < 3600:
