@@ -55,8 +55,8 @@ def info(content):
         return
     send_email(content)
 
-def debug(content):
-    if not debugger.check_func_status("debug"):
+def debugs(content):
+    if not debugger.check_func_status("debugs"):
         return
     send_email(content, " - Debug")
 
