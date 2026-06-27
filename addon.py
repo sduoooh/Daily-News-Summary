@@ -9,7 +9,7 @@ from debug import RuntimeValue, debugger
 
 def date_transfer(date_string):
     now = int(time.time())
-    diff = now - int(date_string)
+    diff = now - date_string
     if diff < 60:
         return f"{diff} seconds ago"
     elif diff < 3600:
