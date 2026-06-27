@@ -1,6 +1,6 @@
 from  get_title   import create_requests, get_page, parse_html
 from      ai      import get_summary 
-from  send_email  import check_email, info, debug, warn, err
+from  send_email  import check_email, info, debugs, warn, err
 
 from addon import check_zaobao, get_zaobao
 from debug import debugger
@@ -17,19 +17,19 @@ def get_base_sources(sources):
     warn_list = [f'{sources[i][0].split(".")[-2]}' for i in empty_indices] if len(empty_indices) > 0 else []
     return res, warn_list
 
-def get_additional_sources(debug):
+def get_additional_sources(debugs):
     if not debugger.check_func_status("get_additional_sources"):
         return [], []
-    zaobao = get_zaobao(debug)
+    zaobao = get_zaobao(debugs)
     warn_list = ["Lianhe Zaobao"] if len(zaobao) == 0 else []
     return zaobao, warn_list
 
-def get_all_sources(sources, debug):
+def get_all_sources(sources, debugs):
     if not debugger.check_func_status("get_all_sources"):
         return []
     res, warn_list = get_base_sources(sources)
     if check_zaobao():
-        zaobao, zaobao_warn_list = get_additional_sources(debug)
+        zaobao, zaobao_warn_list = get_additional_sources(debugs)
         res.append(zaobao)
         warn_list.extend(zaobao_warn_list)
     if len(warn_list) > 0:
@@ -55,7 +55,7 @@ sources = [
 ]
 
 try:
-    res = get_all_sources(sources, debug)
+    res = get_all_sources(sources, debugs)
     summary = get_summary(res)
     info(summary)
 except Exception as e:
