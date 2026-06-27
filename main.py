@@ -33,7 +33,7 @@ def get_all_sources(sources, debugs):
         res.append(zaobao)
         warn_list.extend(zaobao_warn_list)
     if len(warn_list) > 0:
-        warn(f"Empty value in {' and '.join(warn_list)}")
+        warn(f"Empty value or error in {' and '.join(warn_list)}")
     res = [item for sublist in res for item in sublist]  
     if len(res) == 0:
         info("No news found.")
